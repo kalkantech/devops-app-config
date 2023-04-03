@@ -1,0 +1,61 @@
+{{- if .Values.applications }}
+{{- $release := .Values.release }}
+{{- $source := .Values.source }}
+{{- $source_ref := .Values.source_ref | default "main" }}
+{{- range $app := .Values.applications }}
+{{- if $app.source }}
+{{- $source = $app.source }}
+{{- $source_ref := $app.source_ref }}
+{{- end }}
+{{- if $app.enabled }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .name }}
+  labels:
+{{- if .values }}
+{{- if .values.fullnameOverride }}
+{{- if contains .values.fullnameOverride .name }}
+    app.kubernetes.io/instance: {{ .values.fullnameOverride }}
+{{- end }}
+{{- else }}
+    app.kubernetes.io/instance: {{ .name }}
+{{- end }}
+{{- end }}
+spec:
+  destination:
+    server: {{ .cluster_api | default "https://kubernetes.default.svc" }}
+    name: in-cluster
+    namespace: {{ .destination | default .Values.namespace }}
+  project: {{ .project | default "default" }}
+  source:
+{{- if not .no_helm }}
+    helm:
+      releaseName: {{ .name }}
+{{- if .helm_values }}
+      valueFiles:
+{{- toYaml .helm_values | nindent 8 }}
+{{- end }}
+{{- if .values }}
+      values: |
+{{- toYaml .values | nindent 8 }}
+{{- end }}
+{{- end }}
+    {{- if .source_path }}
+    path: {{ .source_path | default "." }}
+    {{- end }}
+    repoURL: {{ $source }}
+    targetRevision: {{ .source_ref | default $source_ref | quote }}
+    {{- if not .source_path }}
+    chart: {{ .chart_name | default .name }}
+    {{- end }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=true
+{{- end }}
+{{- end }}
+{{- end }}

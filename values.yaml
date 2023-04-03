@@ -1,0 +1,10 @@
+source: https://github.com/kalkantech/devops-app-config.git
+release:
+namespace: devops-apps
+
+applications:
+  - name: devops-next-app
+    enabled: true
+    source_path: "apps/devops-next-app"
+    values:
+      appNamespace: devops-test-app
