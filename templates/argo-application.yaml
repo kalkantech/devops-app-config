@@ -1,9 +1,9 @@
 {{- if .Values.applications }}
 {{- $release := .Values.release }}
-{{- $namespace := .Values.namespace }}
 {{- $source := .Values.source }}
 {{- $source_ref := .Values.source_ref | default "main" }}
 {{- range $app := .Values.applications }}
+{{- $release = $app.release }}
 {{- if $app.source }}
 {{- $source = $app.source }}
 {{- $source_ref := $app.source_ref }}
@@ -28,7 +28,7 @@ spec:
   destination:
     # server: {{ .cluster_api | default "https://kubernetes.default.svc" }}
     name: in-cluster
-    namespace: {{ .destination | default $namespace }}
+    namespace: {{ .destination | default $release }}
   project: {{ .project | default "default" }}
   source:
 {{- if not .no_helm }}

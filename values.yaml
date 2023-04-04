@@ -1,11 +1,10 @@
 source: https://github.com/kalkantech/devops-app-config.git
-release:
-namespace: argocd
-
+release: "devops-apps"
 applications:
-  - name: devops-next-app
+  - name: devops-apps
     enabled: true
-    source_path: "apps/devops-next-app"
+    release: "devops-apps"
+    source_path: "."
     source_ref: HEAD
-    values:
-      appNamespace: devops-test-app
+    helm_values:
+      - argo-apps/values.yaml

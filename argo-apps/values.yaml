@@ -1,0 +1,8 @@
+applications:
+  devops-next-app:
+    name: devops-next-apps
+    enabled: false
+    release: "devops-test-app"
+    # source: https://github.com/kalkantech/devops-app-config.git
+    # source_ref: HEAD
+    source_path: apps/devops-next-app
