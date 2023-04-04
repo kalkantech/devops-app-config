@@ -3,7 +3,7 @@ release: "devops-apps"
 applications:
   - name: devops-apps
     enabled: true
-    release: "devops-apps"
+    release: "argocd"
     source_path: "."
     source_ref: HEAD
     helm_values:
