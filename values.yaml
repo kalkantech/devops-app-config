@@ -1,6 +1,6 @@
 source: https://github.com/kalkantech/devops-app-config.git
 release:
-namespace: devops-apps
+namespace: argocd
 
 applications:
   - name: devops-next-app
