@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "devops-next-app.fullname" . }}
-  namespace: {{ .Values.appNamespace }}
+  # namespace: {{ .Values.appNamespace }}
   labels:
     app: {{ .name }}
     {{- include "devops-next-app.labels" . | nindent 4 }}
