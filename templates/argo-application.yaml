@@ -26,8 +26,8 @@ metadata:
 {{- end }}
 spec:
   destination:
-    server: {{ .cluster_api | default "https://kubernetes.default.svc" }}
-    # name: in-cluster
+    # server: {{ .cluster_api | default "https://kubernetes.default.svc" }}
+    name: in-cluster
     namespace: {{ .destination | default $namespace }}
   project: {{ .project | default "default" }}
   source:

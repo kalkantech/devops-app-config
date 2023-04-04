@@ -6,5 +6,6 @@ applications:
   - name: devops-next-app
     enabled: true
     source_path: "apps/devops-next-app"
+    source_ref: HEAD
     values:
       appNamespace: devops-test-app
