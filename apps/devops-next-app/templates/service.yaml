@@ -12,5 +12,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ .name }}
+    app: {{ include "devops-next-app.fullname" . }}
     {{- include "devops-next-app.selectorLabels" . | nindent 4 }}

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "devops-next-app.fullname" . }}
   labels:
-    app: {{ .name }}
+    app: {{ include "devops-next-app.fullname" . }}
     {{- include "devops-next-app.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
