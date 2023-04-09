@@ -6,7 +6,7 @@ replicaCount: 1
 appNamespace: test-app
 image:
   repository: shield07/devops-next-app
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
@@ -37,7 +37,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: LoadBalancer
+  type: NodePort
   port: 3000
 
 ingress:
