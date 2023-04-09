@@ -8,4 +8,4 @@ applications:
     source_path: apps/devops-next-app
     values:
       image:
-        tag: "latest"
+        tag: "0.1.0"
