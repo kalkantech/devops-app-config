@@ -6,3 +6,6 @@ applications:
     # source: https://github.com/kalkantech/devops-app-config.git
     # source_ref: HEAD
     source_path: apps/devops-next-app
+    values:
+      image:
+        tag: "latest"
